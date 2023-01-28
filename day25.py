@@ -15,7 +15,7 @@ registers = { 'a': 0, 'b': 0, 'c': 0, 'd': 0}
 
 a = 0
 digitcount =0
-while digitcount < 100:
+while digitcount < 99:
     address = 0
     registers = {
         'a': 0,
@@ -23,13 +23,13 @@ while digitcount < 100:
         'c': 0,
         'd': 0
     }
+    a += 1
     registers['a']=a
     lastdigit = 1
     happy = True
     iterations = 0
     digitcount = 0
     digits = ""
-    a += 1
     while (address >=0 and address < numOfInstructions) and happy and digitcount < 100:
         iterations += 1
         parts = instructions[address].split(" ")
