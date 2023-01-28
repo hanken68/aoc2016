@@ -2,8 +2,9 @@ instructions = open("inputs/day21.txt", "r").read().splitlines()
 
 pw = "abcdefgh"
 
+pws = []
 
-
+ix = len(instructions)
 
 for i in instructions:
     p = i.split(" ")
@@ -58,5 +59,9 @@ for i in instructions:
             pa.pop(f)
             pa.insert(t,l)
             pw = "".join(pa)
-        
+    pws.append((ix,pw))
+    ix -= 1
+
 print ("Part 1:", pw)
+for p in sorted(pws):
+    print(p[0], p[1])

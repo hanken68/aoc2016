@@ -15,11 +15,9 @@ while len(q)>1:
 elve, numOfPackets = q.pop()
 print("Part 1:", elve)
 
-
 q = deque()
 for i in range(1,numOfElves +1):
     q.append(i)
-
 lenq = len(q)
 while lenq>1:
     elve = q.popleft()

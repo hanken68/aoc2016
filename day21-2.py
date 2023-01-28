@@ -1,13 +1,16 @@
 instructionsRight = open("inputs/day21.txt", "r").read().splitlines()
 
 pw = "fbgdceah"
-pw = "gcedfahb"
+# pw = "gcedfahb"
 
 
 instructions=[]
 while len(instructionsRight)>0:
     instructions.append(instructionsRight.pop())
-
+#            0,1,2,3,4,5,6,7  
+rotations = (7,7,2,6,1,5,0,4)
+counter=0
+print (pw)
 for i in instructions:
     p = i.split(" ")
     match p[0]:
@@ -16,8 +19,8 @@ for i in instructions:
             pl = len(pa)
             dir = p[1]
             if dir == "based":
-                numOfRotations = pw.find(p[6]) + 1
-                if numOfRotations>4: numOfRotations += 1
+                numOfRotations = pw.find(p[6])
+                numOfRotations = rotations[numOfRotations]
                 dir = "left"
             else:
                 numOfRotations = int(p[2])
@@ -25,13 +28,13 @@ for i in instructions:
                 match dir:
                     case "right":
                         l = pa[0]
-                        for i in range(pl-1):
-                            pa[i]= pa[i+1]
+                        for j in range(pl-1):
+                            pa[j]= pa[j+1]
                         pa[pl-1] = l
                     case "left":
                         l = pa[pl-1]
-                        for i in range(pl-1, -1, -1):
-                            pa[i]= pa[i-1]
+                        for j in range(pl-1, -1, -1):
+                            pa[j]= pa[j-1]
                         pa[0] = l
             pw = "".join(pa)
         case "swap":
@@ -48,10 +51,10 @@ for i in instructions:
             f = int(p[2])
             t = int(p[4])
             d = (t-f+1)//2
-            for i in range(d):
-                l= pa[i+f]
-                pa[i+f]= pa[t-i]
-                pa[t-i]= l
+            for j in range(d):
+                l= pa[j+f]
+                pa[j+f]= pa[t-j]
+                pa[t-j]= l
             pw = "".join(pa)
         case "move":
             pa = list(pw)
@@ -61,5 +64,6 @@ for i in instructions:
             pa.pop(f)
             pa.insert(t,l)
             pw = "".join(pa)
-        
+    counter += 1
+    print (pw, i)
 print ("Part 1:", pw)
